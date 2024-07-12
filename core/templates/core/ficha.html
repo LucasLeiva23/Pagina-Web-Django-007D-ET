@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %} {% load static %} {% load custom_filters %} {% block content %}
+
+<body class="cambio23">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-3">
+            <img src="/media/{{ imagen }}" alt="">
+        </div>
+        <div class="col-sm-12 col-md-9">
+            <div class="ficha_titulo">
+                <h3>{{ nombre }}</h3>
+                <hr>
+            </div>
+
+            <div class="ficha_estado">
+                <h5>{{ html_estado|safe }}</h5>
+            </div>
+
+            <div class="ficha_precio">
+                <h3>{{ html_precio|safe }}</h3>
+            </div>
+
+            <div class="ficha_descripcion">
+                <div class="descripcion_cuadro">
+                    <h4>Descripción:</h4>
+                    <p>{{ descripcion }}</p>
+                </div>
+            </div>
+
+            <div class="ficha_stock">
+                <h5>{{ html_stock|safe }}</h5>
+            </div>
+
+            <br><br>
+            <a href="{% url 'comprar_ahora' %}" type="button" class="btn btn-primary">Comprar ahora</a>
+            <a href="{% url 'carrito' %}" type="button" class="btn btn-primary">
+                Agregar al carrito
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+
+{% endblock content %} {% block script %}
+<script src="{% static 'core/js/ficha.js' %}"></script>
+{% endblock script %}

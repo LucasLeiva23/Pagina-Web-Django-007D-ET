@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<body class="cambio23">
+    <h1>Administración de Bodega</h1>
+
+    <div class="container mt-4">
+        <div class="box p-4">
+            <form id="form" method="POST" class="row">
+                {% csrf_token %}
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="{{ form.field_id }}">{{ form.field_label }}</label>
+                        {{ form|as_bootstrap_form }}
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <button type="reset" class="btn btn-secondary">Nuevo</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" class="img-fluid" alt="Sin Imagen">
+                </div>
+            </form>
+
+            {% if productos %}
+            <div class="table-responsive mt-4">
+                <table id="tabla-principal" class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Categoría</th>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr class="text-center">
+                                <td>{{ producto.bodega_id }}</td>
+                                <td><img src="/media/{{ producto.imagen }}" class="producto-sm" alt=""></td>
+                                <td>{{ producto.nombre_producto }}</td>
+                                <td>{{ producto.nombre_categoria }}</td>
+                                <td>{{ producto.estado }}</td>
+                                <td>
+                                    {% if producto.estado == 'En bodega' %}
+                                    <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                    {% else %}
+                                    <a href="#" class="btn btn-primary btn-sm disabled">Eliminar</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+{% endblock content %}
+
+{% block script %}
+<input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
+<script src="{% static 'core/js/bodega.js' %}"></script>
+{% endblock script %}

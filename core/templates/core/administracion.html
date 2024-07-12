@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<body class="green1">
+   
+
+    <h1>Administrar Tienda</h1>
+    <ul>
+        <li><a href="{% url 'usuarios' 'crear' 0 %}">Mantenedor de Usuarios</a></li>
+        <li><a href="{% url 'productos' 'crear' 0 %}">Mantenedor de Productos</a></li>
+        <li><a href="{% url 'ventas' %}">Historial de Ventas</a></li>
+        <li><a href="{% url 'bodega' %}">Mantenedor de Bodega</a></li>
+    </ul>
+</body>
+
+</html>
+{% endblock content %}

@@ -1,0 +1,98 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<body class="cambio23">
+
+    <style>
+        .form-control {
+            border-radius: 8px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+        }
+    </style>
+
+    <div class="registro2">
+        <h1>Registro de cliente</h1>
+
+        <form id="form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="username2">
+                        <label for="id_username">Nombre de cuenta</label>
+                        <input type="text" id="id_username" name="username" placeholder="Nombre de cuenta" required class="form-control" />
+                    </div>
+                    <div class="username2">
+                        <label for="id_rut">RUT Usuario</label>
+                        <input type="text" id="id_rut" name="rut" placeholder="RUT Usuario" required class="form-control" />
+                    </div>
+                    <div class="username2">
+                        <label for="id_first_name">Nombre</label>
+                        <input type="text" id="id_first_name" name="first_name" placeholder="Nombre" required class="form-control" />
+                    </div>
+                    <div class="username2">
+                        <label for="id_last_name">Apellido</label>
+                        <input type="text" id="id_last_name" name="last_name" placeholder="Apellido" required class="form-control" />
+                    </div>
+                    <div class="username2">
+                        <label for="id_email">Email</label>
+                        <input type="email" id="id_email" name="email" placeholder="Email" required class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-5">
+                    <div class="username2">
+                        <label for="id_password1">Contraseña</label>
+                        <input type="password" id="id_password1" name="password1" placeholder="Contraseña" required class="form-control" />
+                    </div>
+                    <div class="username2">
+                        <label for="id_password2">Repetir Contraseña</label>
+                        <input type="password" id="id_password2" name="password2" placeholder="Repetir Contraseña" required class="form-control" />
+                    </div>
+                    <div class="username2">
+                        <label for="id_direccion">Dirección</label>
+                        <textarea id="id_direccion" name="direccion" required class="form-control" placeholder="Dirección"></textarea>
+                    </div>
+                    <div>
+                        <input type="file" id="id_imagen" name="imagen" />
+                    </div>
+                    <div class="boton">
+                        <label for="id_subscrito">Subscripción</label>
+                        <input type="checkbox" id="id_subscrito" name="subscrito" />
+                        <div id="subscritoHelp" class="form-text"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 text-center">
+                    <div class="row">
+                        <div class="col-sm-12" style="height: 220px">
+                            <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AREA DE BOTONES -->
+            <div class="mt-2 mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Registrarme</button>
+                <button type="reset" class="btn btn-secondary" id="limpiar_formulario">Limpiar</button>
+                <button class="btn btn-info" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>
+                <button class="btn btn-success" id="crear_usuario_prueba">Crear usuario de prueba</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
+
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'core/js/registrarme.js' %}"></script>
+{% endblock script %}

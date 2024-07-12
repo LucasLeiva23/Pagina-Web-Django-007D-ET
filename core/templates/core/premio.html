@@ -1,0 +1,165 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<body class="body1">
+
+  <div class="container">
+      <h1>Productos de Ropa</h1>
+
+      <div id="ropa-container" class="row"></div>
+
+      <div class="contest-info">
+          <h2>¡Participa en nuestro concurso!</h2>
+          <p>¡Compra productos por un total superior a $20,000 y participa en un concurso para ganar una prenda de vestir al azar!</p>
+      </div>
+  </div>
+
+  <style>
+      .product-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 8px;
+          padding: 10px;
+          background-color: rgba(255, 255, 255, 0.1);
+          margin-bottom: 15px;
+          height: 100%;
+          box-sizing: border-box;
+      }
+
+      .product-image {
+          width: 100%;
+          height: 150px;
+          object-fit: contain;
+      }
+
+      .product-title {
+          font-weight: bold;
+          margin-top: 10px;
+          font-size: 16px;
+          color: #fff;
+      }
+
+      .product-description {
+          margin-top: 10px;
+          font-size: 12px;
+          color: #fff;
+          height: 60px;
+          overflow: hidden;
+      }
+
+      .product-category {
+          margin-top: 10px;
+          font-size: 12px;
+          font-style: italic;
+          color: #fff;
+      }
+
+      .product-price {
+          margin-top: 10px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #fff;
+      }
+
+      .contest-info {
+          text-align: center;
+          margin-top: 20px;
+      }
+
+      .contest-info h2 {
+          font-size: 24px;
+          margin-bottom: 10px;
+      }
+
+      .contest-info p {
+          font-size: 16px;
+      }
+
+      .row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+      }
+
+      .col-md-4 {
+          flex: 1 1 calc(33.333% - 10px);
+          max-width: calc(33.333% - 10px);
+      }
+
+      .col-sm-6 {
+          flex: 1 1 calc(50% - 10px);
+          max-width: calc(50% - 10px);
+      }
+  </style>
+
+  <script>
+      function truncateText(text, maxLength) {
+          if (text.length > maxLength) {
+              return text.substring(0, maxLength) + '...';
+          } else {
+              return text;
+          }
+      }
+
+      const translations = {
+          'men\'s clothing': 'Ropa de hombre',
+          'women\'s clothing': 'Ropa de mujer',
+          'jewelery': 'Joyería',
+          'electronics': 'Electrónica'
+      };
+
+      fetch('http://fakestoreapi.com/products')
+          .then(response => response.json())
+          .then(data => {
+              const ropaContainer = document.getElementById('ropa-container');
+
+              data.forEach(product => {
+                  const productDiv = document.createElement('div');
+                  productDiv.classList.add('col-md-4', 'col-sm-6', 'product-card');
+
+                  const image = document.createElement('img');
+                  image.src = product.image;
+                  image.alt = product.title;
+                  image.classList.add('product-image');
+
+                  const title = document.createElement('p');
+                  title.textContent = product.title;
+                  title.classList.add('product-title');
+
+                  const description = document.createElement('p');
+                  description.textContent = truncateText(product.description, 100); // Acortar descripción
+                  description.classList.add('product-description');
+
+                  const category = document.createElement('p');
+                  category.textContent = `Tipo: ${translations[product.category] || product.category}`;
+                  category.classList.add('product-category');
+
+                  const price = document.createElement('p');
+                  price.textContent = `$${product.price}`;
+                  price.classList.add('product-price');
+
+                  productDiv.appendChild(image);
+                  productDiv.appendChild(title);
+                  productDiv.appendChild(description); // Agregar la descripción al div del producto
+                  productDiv.appendChild(category); // Agregar categoría
+                  productDiv.appendChild(price);
+
+                  ropaContainer.appendChild(productDiv);
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching data:', error);
+          });
+  </script>
+
+</body>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

@@ -1,0 +1,105 @@
+{% extends 'core/base.html' %} {% load static %} {% load custom_filters %} {% block content %}
+<body class="body">
+
+<h1>
+    Tienda de Videojuegos MicroPlay
+    <img width="30px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/PlayStation_logo.svg/1280px-PlayStation_logo.svg.png" alt="">
+    <img width="25px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/2048px-Xbox_one_logo.svg.png" alt="">
+    <img width="70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQeGj9VDErDne7QkiSgZg09LdbU8tGteMb1Lx83V69IQ&s" alt="">
+</h1>
+
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img height="600px" src="{% static 'core/img/644dd361-9d33-41f8-9cc1-6325a8ad60f1.jpg' %}" class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Productos Destacados</h5>
+                <p>asegurate y comprate tu nueva consola Playstation 5</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img height="600px" src="{% static 'core/img/436da0b2-ca93-428a-8829-430fbd431668.jpg' %}" class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>God of War</h5>
+                <p>eres un maldito dios rompe pelotas .</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img height="600px" src="{% static 'core/img/FhItdXYX0AAF0SR.jpg_large' %}" class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Bully</h5>
+                <p>jueog donde eres un brabucon .</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+{% if productos %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% for producto in productos %}
+
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
+            <div class="card mb-4 box-shadow">
+
+                <div class="text-center">
+                    <img class="card-img-top thumbnail-product" src="/media/{{ producto.imagen }}" alt="">
+                </div>
+
+                <div class="card-body">
+                    <p class="card-title">
+                        <h6>
+                            {{ producto.nombre }}
+                        </h6>
+                        <div>
+                            {{ producto.html_estado|safe }} <br> Precio normal:
+                            <span>
+                            {{ producto.html_precio|safe }} <br>
+                          </span>
+                        </div>
+                        <p>
+                            <p class="card-text producto-descripcion-index" data-toggle="tooltip">
+                                {{ producto.descripcion }}
+                                <br> {{ producto.html_stock }} <br>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href={% url 'ficha' producto.id %} type="button" class="btn btn-sm btn-outline-secondary">
+                              Comprar
+                          </a>
+                                    <a href="{% url 'carrito' %}" type="button" class="btn btn-sm btn-outline-secondary">
+                              Agregar al carrito
+                          </a>
+                                </div>
+                            </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% else %}
+
+<h2>No se encontraron productos</h2>
+</body>
+
+{% endif %} {% endblock content %}

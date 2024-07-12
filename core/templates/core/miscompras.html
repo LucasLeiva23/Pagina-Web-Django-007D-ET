@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<body class="cambio23">
+    
+
+<div class="container">
+    <h1 class="mt-4">Mis Compras</h1>
+
+    <table id="tabla-principal" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nro boleta</th>
+                <th>Venta</th>
+                <th>Despacho</th>
+                <th>Entrega</th>
+                <th>Monto total</th>
+                <th>Estado actual</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for boleta in historial %}
+            <tr {% if boleta.estado == 'Anulado' %} class="letra-boleta-anulada" {% endif %}>
+                <td>{{ boleta.nro_boleta }}</td>
+                <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
+                <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                <td>{{ boleta.total_a_pagar }}</td>
+                <td class="descripcion-boleta">{{ boleta.estado }}</td>
+                <td>
+                    <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if historial %}
+    <p class="text-muted">Mostrando {{ historial|length }} boletas.</p>
+    {% else %}
+    <p class="text-muted">No se encontraron boletas.</p>
+    {% endif %}
+</div>
+</body>
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    $('#tabla-principal').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        },
+        // Configuración adicional de DataTables si es necesaria
+    });
+});
+</script>
+{% endblock extra_js %}
+
+{% block extra_css %}
+<style>
+.descripcion-boleta {
+    background-color: #f0f0f0; /* Color de fondo para boletas anuladas */
+    padding: 10px; /* Espaciado interior */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.text-muted {
+    color: #6c757d; /* Color de texto para mensajes informativos */
+}
+</style>
+{% endblock extra_css %}
+
+<link type="image/x-icon" rel="shortcut icon" href="{% static 'core/img/microplay.png' %}" />

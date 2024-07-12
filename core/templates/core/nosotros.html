@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<body class="green1">
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <img src="{% static 'core/img/MICROPLAY (1).png' %}" alt="Microplay" class="img-fluid" style="max-width: 100%;">
+        </div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center">Sobre Nosotros!</h1>
+                        <p class="text-justify">
+                            ¡Bienvenidos a nuestra tienda de videojuegos! Ofrecemos una amplia selección de los últimos títulos para todas las plataformas, desde PC hasta móviles. Nuestro equipo apasionado está aquí para ayudarte a elegir el juego perfecto y garantizar tu satisfacción.
+                            Además, tenemos un espacio acogedor donde puedes disfrutar de demos, participar en eventos y conocer a otros jugadores. No te pierdas nuestras promociones exclusivas. En resumen, somos más que una tienda: somos una comunidad apasionada por
+                            los videojuegos. ¡Ven y encuentra el juego perfecto para ti en nuestra tienda!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'core/img/1fbd6941c4a5083e5b8aa95a2dc3e8a9.jpg' %}" alt="Gerente General" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="card-title">Gerente General</h2>
+                        <p class="card-text">
+                            Mi principal responsabilidad es garantizar que la tienda esté lista para recibir a los clientes. Me encargo de mantener los estantes llenos con los últimos lanzamientos de videojuegos, consolas y accesorios, así como de organizar los productos de manera
+                            atractiva y accesible para facilitar la búsqueda de los clientes.
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="mailto:gerentecj@gameshop.cl" class="btn btn-primary">Enviar Correo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'core/img/1685771ba939628deff09b0f92d760e0.jpg' %}" alt="Marketing" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="card-title">Marketing</h2>
+                        <p class="card-text">
+                            Una de mis principales responsabilidades es gestionar nuestras redes sociales y presencia en línea. Me encargo de mantener activa nuestra tienda en plataformas como Instagram, Twitter y Facebook, compartiendo contenido relevante y emocionante para nuestros
+                            seguidores. También interactúo con nuestra comunidad, respondiendo a preguntas y comentarios para construir una relación sólida y cercana con nuestros clientes.
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="mailto:marketingscout@gameshop.cl" class="btn btn-primary">Enviar Correo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'core/img/maxresdefault.jpg' %}" alt="Vendedor" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="card-title">Vendedor</h2>
+                        <p class="card-text">
+                            ¡Hola! Como encargado de ventas en una tienda de videojuegos, mi objetivo principal es brindar una experiencia excepcional a nuestros clientes y ayudarles a encontrar los productos que mejor se adapten a sus necesidades y deseos.
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="mailto:vendedor1@gameshop.cl" class="btn btn-primary">Enviar Correo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'core/img/vendedoresasas.png' %}" alt="Vendedor" style="height: 300px; object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="card-title">Vendedor</h2>
+                        <p class="card-text">
+                            Si estás buscando una consola, te informo sobre las diferentes opciones disponibles y te explico las características de cada una. Si tienes dudas sobre qué consola se ajusta mejor a tus necesidades, puedo guiarte para que tomes una decisión informada.
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="mailto:vendedor2@gameshop.cl" class="btn btn-primary">Enviar Correo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
